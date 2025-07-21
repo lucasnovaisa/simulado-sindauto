@@ -20,7 +20,7 @@ export const EndModal: React.FC<EndModalProps> = ({
   totalQuestions,
   showResults,
   score,
-  isApproved,
+  isApproved
 }) => {
   if (!isOpen) return null;
 
@@ -44,9 +44,7 @@ export const EndModal: React.FC<EndModalProps> = ({
               {isApproved ? 'APROVADO' : 'REPROVADO'}
             </h2>
             <p className="text-gray-600 text-lg">
-              Sua pontuação: {showResults && (
-                <span className="font-medium">{Math.round((score / 100) * answeredQuestions)}</span>
-            )}
+              Sua pontuação: {score.toFixed(1)}%
             </p>
             <p className="text-sm text-gray-500 mt-1">
               {isApproved ? 'Parabéns! Você atingiu a nota mínima.' : 'Você precisa de pelo menos 75% para ser aprovado.'}
