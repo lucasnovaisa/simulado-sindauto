@@ -40,8 +40,8 @@ function App() {
       }
     });
 
-    const score = correctAnswers;
-    const isApproved = score >= 28;
+    const score = answeredQuestions.length > 0 ? (correctAnswers / answeredQuestions.length) * 100 : 0;
+    const isApproved = score >= 75;
 
     setQuizState(prev => ({
       ...prev,
