@@ -44,7 +44,9 @@ export const EndModal: React.FC<EndModalProps> = ({
               {isApproved ? 'APROVADO' : 'REPROVADO'}
             </h2>
             <p className="text-gray-600 text-lg">
-              Sua pontuação: {answeredQuestions}
+              Sua pontuação: {showResults && (
+                <span className="font-medium">{Math.round((score / 100) * answeredQuestions)}</span>
+            )}
             </p>
             <p className="text-sm text-gray-500 mt-1">
               {isApproved ? 'Parabéns! Você atingiu a nota mínima.' : 'Você precisa de pelo menos 75% para ser aprovado.'}
