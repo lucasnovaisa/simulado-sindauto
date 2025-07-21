@@ -10,6 +10,7 @@ interface EndModalProps {
   showResults: boolean;
   score: number;
   isApproved: boolean;
+  correctAnswer: number;
 }
 
 export const EndModal: React.FC<EndModalProps> = ({
@@ -20,7 +21,8 @@ export const EndModal: React.FC<EndModalProps> = ({
   totalQuestions,
   showResults,
   score,
-  isApproved
+  isApproved,
+  correctAnswer
 }) => {
   if (!isOpen) return null;
 
@@ -44,7 +46,7 @@ export const EndModal: React.FC<EndModalProps> = ({
               {isApproved ? 'APROVADO' : 'REPROVADO'}
             </h2>
             <p className="text-gray-600 text-lg">
-              Sua pontuação: {score.toFixed(1)}%
+              Sua pontuação: {correctAnswer}
             </p>
             <p className="text-sm text-gray-500 mt-1">
               {isApproved ? 'Parabéns! Você atingiu a nota mínima.' : 'Você precisa de pelo menos 75% para ser aprovado.'}
