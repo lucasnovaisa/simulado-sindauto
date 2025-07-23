@@ -1,18 +1,20 @@
-import React, { useState, useCallback } from 'react';
-import { NameForm } from './components/NameForm';
-import { Quiz } from './components/Quiz';
-import { EndModal } from './components/EndModal';
-import { useTimer } from './hooks/useTimer';
-import { questions as allQuestions } from './data/questions';
-import { selectRandomQuestions } from './utils/questionSelector';
-import { UserAnswer, QuizState } from './types/quiz';
+import React, { useState, useCallback } from "react";
+import { NameForm } from "./components/NameForm";
+import { Quiz } from "./components/Quiz";
+import { EndModal } from "./components/EndModal";
+import { useTimer } from "./hooks/useTimer";
+import { questions as allQuestions } from "./data/questions";
+import { selectRandomQuestions } from "./utils/questionSelector";
+import { QuizState } from "./types/quiz";
 
 const QUIZ_TIME_SECONDS = 50 * 60; // 50 minutes
 
 function App() {
-  const [selectedQuestions, setSelectedQuestions] = useState<typeof allQuestions>([]);
+  const [selectedQuestions, setSelectedQuestions] = useState<
+    typeof allQuestions
+  >([]);
   const [quizState, setQuizState] = useState<QuizState>({
-    userName: '',
+    userName: "",
     currentQuestion: 0,
     answers: [],
     timeRemaining: QUIZ_TIME_SECONDS,
@@ -20,7 +22,7 @@ function App() {
     isQuizEnded: false,
     showResults: false,
     score: 0,
-    isApproved: false
+    isApproved: false,
   });
 
   const [showEndModal, setShowEndModal] = useState(false);
@@ -30,72 +32,79 @@ function App() {
   }, []);
 
   const calculateResults = () => {
-    const answeredQuestions = quizState.answers.filter(a => a.selectedAnswer !== null);
+    const answeredQuestions = quizState.answers.filter(
+      (a) => a.selectedAnswer !== null
+    );
     let correctAnswers = 0;
 
-    answeredQuestions.forEach(answer => {
-      const question = selectedQuestions.find(q => q.id === answer.questionId);
+    answeredQuestions.forEach((answer) => {
+      const question = selectedQuestions.find(
+        (q) => q.id === answer.questionId
+      );
       if (question && answer.selectedAnswer === question.correctAnswer) {
         correctAnswers++;
       }
     });
 
-    const score = answeredQuestions.length > 0 ? (correctAnswers / answeredQuestions.length) * 100 : 0;
-    const isApproved = score >= 75;
+    const score =
+      answeredQuestions.length > 0
+        ? (correctAnswers / answeredQuestions.length) * 100
+        : 0;
+    const isApproved = correctAnswers >= 28;
 
-    setQuizState(prev => ({
+    setQuizState((prev) => ({
       ...prev,
       showResults: true,
       score,
       isApproved,
-      isQuizEnded: true
+      isQuizEnded: true,
+      correctAnswers,
     }));
 
     setShowEndModal(true);
   };
-  const { 
-    timeRemaining, 
-    startTimer, 
-    resetTimer, 
-    formatTime, 
-    timeColor 
-  } = useTimer(QUIZ_TIME_SECONDS, handleTimeUp);
+  const { timeRemaining, startTimer, resetTimer, formatTime, timeColor } =
+    useTimer(QUIZ_TIME_SECONDS, handleTimeUp);
 
   const handleStartQuiz = (name: string) => {
     const randomQuestions = selectRandomQuestions(allQuestions, 40);
     setSelectedQuestions(randomQuestions);
-    
-    setQuizState(prev => ({
+
+    setQuizState((prev) => ({
       ...prev,
       userName: name,
       isQuizStarted: true,
-      answers: randomQuestions.map(q => ({ questionId: q.id, selectedAnswer: null }))
+      answers: randomQuestions.map((q) => ({
+        questionId: q.id,
+        selectedAnswer: null,
+      })),
     }));
     startTimer();
   };
 
   const handleAnswerSelect = (questionId: number, answer: number) => {
-    setQuizState(prev => ({
+    setQuizState((prev) => ({
       ...prev,
-      answers: prev.answers.map(a => 
-        a.questionId === questionId 
-          ? { ...a, selectedAnswer: answer }
-          : a
-      )
+      answers: prev.answers.map((a) =>
+        a.questionId === questionId ? { ...a, selectedAnswer: answer } : a
+      ),
     }));
   };
 
   const handlePreviousQuestion = () => {
-    setQuizState(prev => ({
+    setQuizState((prev) => ({
       ...prev,
-      currentQuestion: Math.max(0, prev.currentQuestion - 1)
+      currentQuestion: Math.max(0, prev.currentQuestion - 1),
     }));
   };
 
   const handleNextQuestion = () => {
-    setQuizState(prev => ({
+    setQuizState((prev) => ({
       ...prev,
-      currentQuestion: Math.min(selectedQuestions.length - 1, prev.currentQuestion + 1)
+      currentQuestion: Math.min(
+        selectedQuestions.length - 1,
+        prev.currentQuestion + 1
+      ),
     }));
   };
 
@@ -106,17 +115,20 @@ function App() {
   const handleRestart = () => {
     const randomQuestions = selectRandomQuestions(allQuestions, 40);
     setSelectedQuestions(randomQuestions);
-    
+
     setQuizState({
       userName: quizState.userName,
       currentQuestion: 0,
-      answers: randomQuestions.map(q => ({ questionId: q.id, selectedAnswer: null })),
+      answers: randomQuestions.map((q) => ({
+        questionId: q.id,
+        selectedAnswer: null,
+      })),
       timeRemaining: QUIZ_TIME_SECONDS,
       isQuizStarted: true,
       isQuizEnded: false,
       showResults: false,
       score: 0,
-      isApproved: false
+      isApproved: false,
     });
     setShowEndModal(false);
     resetTimer();
@@ -126,7 +138,7 @@ function App() {
   const handleExit = () => {
     setSelectedQuestions([]);
     setQuizState({
-      userName: '',
+      userName: "",
       currentQuestion: 0,
       answers: [],
       timeRemaining: QUIZ_TIME_SECONDS,
@@ -134,13 +146,15 @@ function App() {
       isQuizEnded: false,
       showResults: false,
       score: 0,
-      isApproved: false
+      isApproved: false,
     });
     setShowEndModal(false);
     resetTimer();
   };
 
-  const answeredQuestions = quizState.answers.filter(a => a.selectedAnswer !== null).length;
+  const answeredQuestions = quizState.answers.filter(
+    (a) => a.selectedAnswer !== null
+  ).length;
 
   // Se não há questões selecionadas ainda, mostrar tela de nome
   if (!quizState.isQuizStarted || selectedQuestions.length === 0) {
@@ -162,7 +176,7 @@ function App() {
         onNextQuestion={handleNextQuestion}
         onEndQuiz={handleEndQuiz}
       />
-      
+
       <EndModal
         isOpen={showEndModal}
         onRestart={handleRestart}
@@ -172,6 +186,7 @@ function App() {
         showResults={quizState.showResults}
         score={quizState.score}
         isApproved={quizState.isApproved}
+        correctAnswers={quizState.correctAnswers}
       />
     </>
   );
