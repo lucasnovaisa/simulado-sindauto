@@ -21,4 +21,5 @@ export interface QuizState {
   showResults: boolean;
   score: number;
   isApproved: boolean;
+  correctAnswers?: number;
 }
