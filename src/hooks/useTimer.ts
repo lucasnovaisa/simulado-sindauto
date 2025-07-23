@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 
 export const useTimer = (initialTime: number, onTimeUp: () => void) => {
   const [timeRemaining, setTimeRemaining] = useState(initialTime);
@@ -55,13 +55,15 @@ export const useTimer = (initialTime: number, onTimeUp: () => void) => {
   const formatTime = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    return `${minutes.toString().padStart(2, "0")}:${remainingSeconds
+      .toString()
+      .padStart(2, "0")}`;
   };
 
   const getTimeColor = (): string => {
-    if (timeRemaining <= 300) return 'text-red-500'; // 5 minutes
-    if (timeRemaining <= 600) return 'text-orange-500'; // 10 minutes
-    return 'text-green-500';
+    if (timeRemaining <= 300) return "text-red-500";
+    if (timeRemaining <= 600) return "text-orange-500";
+    return "text-green-500";
   };
 
   return {
@@ -71,6 +73,6 @@ export const useTimer = (initialTime: number, onTimeUp: () => void) => {
     stopTimer,
     resetTimer,
     formatTime: formatTime(timeRemaining),
-    timeColor: getTimeColor()
+    timeColor: getTimeColor(),
   };
 };
