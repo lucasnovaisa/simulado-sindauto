@@ -207,7 +207,6 @@ export const Quiz: React.FC<QuizProps> = ({
                 <button
                   key={index}
                   onClick={() => {
-                    // Navigation to specific question would be implemented here
                   }}
                   className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 ${
                     isCurrent
