@@ -192,37 +192,33 @@ export const Quiz: React.FC<QuizProps> = ({
           </div>
         </div>
 
-        <div className="hidden md:block mt-8 bg-white rounded-2xl shadow-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">
-            Navegação das Questões
-          </h3>
-          <div className="grid grid-cols-8 md:grid-cols-10 gap-2">
+        <div className="mt-8 bg-white rounded-2xl shadow-lg p-4 md:p-6">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">Navegação das Questões</h3>
+          <div className="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 xl:grid-cols-15 gap-2">
             {questions.map((_, index) => {
-              const isAnswered =
-                answers.find((a) => a.questionId === index + 1)
-                  ?.selectedAnswer !== null;
+              const isAnswered = answers.find(a => a.questionId === index + 1)?.selectedAnswer !== null;
               const isCurrent = index === currentQuestion;
-              const userAnswer = answers.find(
-                (a) => a.questionId === index + 1
-              )?.selectedAnswer;
+              const userAnswer = answers.find(a => a.questionId === index + 1)?.selectedAnswer;
               const correctAnswer = questions[index].correctAnswer;
               const isCorrect = isAnswered && userAnswer === correctAnswer;
               const isIncorrect = isAnswered && userAnswer !== correctAnswer;
-
+              
               return (
                 <button
                   key={index}
-                  onClick={() => {}}
-                  className={`w-10 h-10 rounded-lg font-semibold text-sm transition-all duration-200 ${
+                  onClick={() => {
+                    // Navigation to specific question would be implemented here
+                  }}
+                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 ${
                     isCurrent
-                      ? "bg-yellow-500 text-white shadow-lg"
+                      ? 'bg-yellow-500 text-white shadow-lg'
                       : isCorrect
-                      ? "bg-green-500 text-white hover:bg-green-600"
+                      ? 'bg-green-500 text-white hover:bg-green-600'
                       : isIncorrect
-                      ? "bg-red-500 text-white hover:bg-red-600"
+                      ? 'bg-red-500 text-white hover:bg-red-600'
                       : isAnswered
-                      ? "bg-yellow-100 text-yellow-700 hover:bg-yellow-200"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      ? 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
                 >
                   {index + 1}
@@ -230,21 +226,21 @@ export const Quiz: React.FC<QuizProps> = ({
               );
             })}
           </div>
-          <div className="flex items-center justify-center space-x-6 mt-4 text-sm">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-4 text-xs sm:text-sm">
             <div className="flex items-center space-x-2">
-              <div className="w-4 h-4 bg-yellow-500 rounded"></div>
+              <div className="w-3 h-3 sm:w-4 sm:h-4 bg-yellow-500 rounded"></div>
               <span className="text-gray-600">Atual</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-4 h-4 bg-green-500 rounded"></div>
+              <div className="w-3 h-3 sm:w-4 sm:h-4 bg-green-500 rounded"></div>
               <span className="text-gray-600">Correta</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-4 h-4 bg-red-500 rounded"></div>
+              <div className="w-3 h-3 sm:w-4 sm:h-4 bg-red-500 rounded"></div>
               <span className="text-gray-600">Incorreta</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-4 h-4 bg-gray-100 border border-gray-300 rounded"></div>
+              <div className="w-3 h-3 sm:w-4 sm:h-4 bg-gray-100 border border-gray-300 rounded"></div>
               <span className="text-gray-600">Não respondida</span>
             </div>
           </div>
