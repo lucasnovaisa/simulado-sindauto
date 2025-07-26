@@ -245,6 +245,23 @@ export const Quiz: React.FC<QuizProps> = ({
           </div>
         </div>
       </div>
+      <footer className="bg-white border-t border-gray-200 mt-8">
+        <div className="max-w-6xl mx-auto px-4 py-6">
+          <div className="text-center">
+            <p className="text-sm text-gray-600">
+              Desenvolvido pelo suporte do{' '}
+              <a 
+                href="https://sindautoba.com.br/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-red-600 hover:text-red-700 font-medium transition-colors duration-200 hover:underline"
+              >
+                Sindauto BA
+              </a>
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
