@@ -854,12 +854,6 @@ export const questions: Question[] = [
       subject: "Legislação"
     },
     {
-      text: "As placas de regulamentação têm por finalidade:",
-      alternatives: ["A) indicar sentidos de direção;", "B) educar os condutores;", "C) informar aos usuários as condições, proibições ou restrições no uso da via;", "D) advertir pedestres;", "E) advertir os condutores de veículos."],
-      correctAnswer: 4,
-      subject: "Legislação"
-    },
-    {
       text: "A placa A-4a adverte que você encontrará:",
       alternatives: ["A) adiante 1 (uma) curva à direita;", "B) adiante 1 (uma) curva à esquerda;", "C) curvas sucessivas, sendo a primeira à direita;", "D) 2 (duas) curvas acentuadas em 'S, sendo a primeira à esquerda;", "E) 1 (uma) curva acentuada à esquerda;"],
       correctAnswer: 3,
