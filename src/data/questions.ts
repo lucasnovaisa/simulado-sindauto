@@ -758,12 +758,6 @@ export const questions: Question[] = [
       subject: "Legislação"
     },
     {
-      text: "O que significa a placa a seguir?",
-      alternatives: ["A) curva acentuada em 'S' à esquerda.", "B) pista sinuosa à direita;", "C) curva à direita;", "D) curva acentuada em 'S' à direita;", "E) curva em S À direita;"],
-      correctAnswer: 4,
-      subject: "Legislação"
-    },
-    {
       text: "Observar, sinalizar (dar seta) e deslocar-se totalmente para a esquerda da pista de rolamento é um procedimento de um condutor de veículo que está em uma:",
       alternatives: ["A) via urbana de 2 (dois) sentidos e pretende realizar uma conversão à esquerda;", "B) rodovia e pretende realizar uma conversão à esquerda.", "C) via urbana de 1 (um) sentido e pretende realizar uma conversão à direita;", "D) via urbana de 2 (dois) sentidos e pretende realizar uma conversão à direita;", "E) via urbana de 1 (um) sentido e pretende realizar uma conversão à esquerda;"],
       correctAnswer: 4,
