@@ -2,7 +2,7 @@ import { Question } from "../types/quiz";
 
 export const selectRandomQuestions = (
   questions: Question[],
-  count: number = 40
+  count: number = 30
 ): Question[] => {
   const shuffled = [...questions];
 
