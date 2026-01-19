@@ -7,7 +7,7 @@ import { questions as allQuestions } from "./data/questions";
 import { selectRandomQuestions } from "./utils/questionSelector";
 import { QuizState } from "./types/quiz";
 
-const QUIZ_TIME_SECONDS = 50 * 60; // 50 minutes
+const QUIZ_TIME_SECONDS = 60 * 60; // 50 minutes
 
 function App() {
   const [selectedQuestions, setSelectedQuestions] = useState<
@@ -50,7 +50,7 @@ function App() {
       answeredQuestions.length > 0
         ? (correctAnswers / answeredQuestions.length) * 100
         : 0;
-    const isApproved = correctAnswers >= 28;
+    const isApproved = correctAnswers >= 20;
 
     setQuizState((prev) => ({
       ...prev,
@@ -67,7 +67,7 @@ function App() {
     useTimer(QUIZ_TIME_SECONDS, handleTimeUp);
 
   const handleStartQuiz = (name: string) => {
-    const randomQuestions = selectRandomQuestions(allQuestions, 40);
+    const randomQuestions = selectRandomQuestions(allQuestions, 30);
     setSelectedQuestions(randomQuestions);
 
     setQuizState((prev) => ({
@@ -113,7 +113,7 @@ function App() {
   };
 
   const handleRestart = () => {
-    const randomQuestions = selectRandomQuestions(allQuestions, 40);
+    const randomQuestions = selectRandomQuestions(allQuestions, 30);
     setSelectedQuestions(randomQuestions);
 
     setQuizState({
