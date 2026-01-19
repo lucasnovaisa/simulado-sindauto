@@ -92,7 +92,7 @@ export const NameForm: React.FC<NameFormProps> = ({ onStart }) => {
           <ul className="text-sm text-gray-600 space-y-1">
             <li>• 30 questões de múltipla escolha</li>
             <li>• Tempo limite: 60 minutos</li>
-            <li>• 5 alternativas por questão</li>
+            <li>• 4 alternativas por questão</li>
           </ul>
         </div>
       </div>
