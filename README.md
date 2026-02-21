@@ -39,7 +39,7 @@ Este projeto demonstra:
 
 ## 🔖 Layout
 
-Você pode visualizar o projeto através [DESSE LINK](<simulado-sindauto.vercel.app/>)
+Você pode visualizar o projeto através [DESSE LINK](<https://simulado-sindauto.vercel.app/>)
 
 ## :memo: Licença
 
